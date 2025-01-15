@@ -1,6 +1,7 @@
 const video = document.getElementById('video'); video.classList.add('mirror');
 
-function startVideo(){
+function startVideo()
+{
     navigator.getUserMedia(
         {video: {}},
         stream => video.srcObject=stream,
