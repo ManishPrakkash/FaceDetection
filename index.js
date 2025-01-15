@@ -11,7 +11,7 @@ Promise.all([
 //func to vid on web
 function startVideo()
 {
-    navigator.mediaDevices.getUserMedia(
+    navigator.getUserMedia(
         {video: {}},
         stream => video.srcObject=stream,
         err=>console.error(err)
