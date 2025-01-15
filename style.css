@@ -8,6 +8,8 @@ body {
     align-items:center;
     
 }
-.mirror {
-    transform: scalex(-1);
+
+
+canvas {
+    position:absolute;
 }

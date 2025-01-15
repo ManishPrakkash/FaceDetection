@@ -1,4 +1,4 @@
-const video = document.getElementById('video'); video.classList.add('mirror');
+const video = document.getElementById('video');
 //
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -24,10 +24,19 @@ video.addEventListener('play',()=>{
     document.body.append(canvas)
     const displaySize = {width:video.width, height:video.height}
 
-    setInterval(async() =>{
+    faceapi.matchDimensions(canvas,displaySize)
+
+    setInterval(async () =>{
         const detections = await faceapi.detectAllFaces(video,
-            new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks
-        ().withFaceExpressions()
-        console.log(detections)
+            new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+        .withFaceExpressions()
+        const resizedDetections =faceapi.resizeResults
+        (detections,displaySize)
+
+            canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height)
+
+        faceapi.draw.drawDetections(canvas, resizedDetections)
+
+        
     },100)
 });
